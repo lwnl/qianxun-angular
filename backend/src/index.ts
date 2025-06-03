@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
 import type { Request, Response } from 'express'
-import * as cheerio from 'cheerio';
 
 const app = express();
 const PORT = 3000;
