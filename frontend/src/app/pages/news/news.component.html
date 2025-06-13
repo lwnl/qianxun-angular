@@ -1,3 +1,25 @@
 <p>news works!</p>
-<h3 class="cursor-pointer text-primary fw-bold" (click)="loadNews()">今日要闻1</h3>
-<div [innerHTML]="newsContent"></div>
+
+<h4>最新要闻</h4>
+<div class="important-news">
+  <ng-container *ngFor="let news of currentNewsList">
+    <h5>{{ news.title }}</h5>
+    <p>{{ news.createdAt }}</p>
+  </ng-container>
+</div>
+
+<div>
+  <span (click)="getPrevPage()"> 上一页 </span>
+
+<ng-container *ngFor="let index of indexArray">
+  <span (click)="setPage(index + 1)">{{ index + 1 }}</span>
+</ng-container>
+
+  <span (click)="getNextPage()"> 下一页 </span>
+</div>
+
+<div className="ranking-list">
+  <h4>排行榜</h4>
+</div>
+
+<div [innerHTML]="newsContent" (click)="loadNews()"></div>
