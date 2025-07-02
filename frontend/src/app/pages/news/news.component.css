@@ -1,0 +1,29 @@
+.news-page {
+  display: flex;
+}
+
+.news-list,
+.ranking-list {
+  margin-block: var(--size-400);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-400);
+}
+
+.ranking-level {
+  display: flex;
+  gap: var(--size-400);
+}
+
+@media (max-width: 599px) {
+  .news-page {
+    flex-direction: column;
+  }
+
+  .news-list,
+  .ranking-list {
+    width: 100%;
+  }
+}

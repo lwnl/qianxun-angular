@@ -1,25 +1,37 @@
-<p>news works!</p>
+<section class="news-page">
+  <div class="news-list">
+    <h4>最新要闻</h4>
+    <div class="important-news">
+      <ng-container *ngFor="let news of currentNewsList">
+        <h5>{{ news.title }}</h5>
+        <p>{{ news.createdAt }}</p>
+      </ng-container>
+    </div>
 
-<h4>最新要闻</h4>
-<div class="important-news">
-  <ng-container *ngFor="let news of currentNewsList">
-    <h5>{{ news.title }}</h5>
-    <p>{{ news.createdAt }}</p>
-  </ng-container>
-</div>
+    <div>
+      <span (click)="getPrevPage()"> 上一页 </span>
 
-<div>
-  <span (click)="getPrevPage()"> 上一页 </span>
+      <ng-container *ngFor="let index of indexArray">
+        <span (click)="setPage(index + 1)">{{ index + 1 }}</span>
+      </ng-container>
 
-<ng-container *ngFor="let index of indexArray">
-  <span (click)="setPage(index + 1)">{{ index + 1 }}</span>
-</ng-container>
+      <span (click)="getNextPage()"> 下一页 </span>
+    </div>
+  </div>
 
-  <span (click)="getNextPage()"> 下一页 </span>
-</div>
-
-<div className="ranking-list">
-  <h4>排行榜</h4>
-</div>
+  <div class="ranking-list">
+    <ul class="ranking-level">
+      <li>今日排行</li>
+      <li>本周排行</li>
+      <li>历史排行</li>
+    </ul>
+    <ol class="ranking-newsList">
+      <li>No.1</li>
+      <li>No.2</li>
+      <li>No.3</li>
+    </ol>
+    
+  </div>
+</section>
 
 <div [innerHTML]="newsContent" (click)="loadNews()"></div>

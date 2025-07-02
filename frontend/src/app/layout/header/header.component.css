@@ -89,6 +89,13 @@
   margin-bottom: 12px;
 }
 
+button[aria-label="关闭菜单"] {
+  background-color: white;
+  border:0;
+  cursor: pointer;
+  /* color: white; */
+}
+
 .sidenav-links {
   display: flex;
   flex-direction: column;

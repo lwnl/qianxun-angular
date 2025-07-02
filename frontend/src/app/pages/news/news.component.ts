@@ -7,9 +7,10 @@ import { newsList } from './mockData';
   selector: 'app-news',
   imports: [HttpClientModule, CommonModule],
   templateUrl: './news.component.html',
+  styleUrls: ['./news.component.css'],
 })
 export class NewsComponent {
-  newsContent: string = '要内容'
+  newsContent: string = '新闻内容'
   currentPage: number = 1
   pageSize: number = 5
   totalPages: number = Math.ceil(newsList.length / this.pageSize)

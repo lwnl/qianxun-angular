@@ -6,7 +6,6 @@
   --bgc-transparent: rgba(0, 0, 0, 0.4);
   --bgc-dark-mode: rgba(0, 0, 0, 0.8);
   --bgc-current: var(--bgc-transparent);
-  --yellow-sun: #fbfe41;
 
   /* font-weight constants */
   --fw-regular: 400;
