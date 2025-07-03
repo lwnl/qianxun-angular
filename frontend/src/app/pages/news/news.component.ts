@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { newsList } from './mockData';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-news',
-  imports: [HttpClientModule, CommonModule],
+  imports: [HttpClientModule, CommonModule, RouterModule],
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css'],
 })

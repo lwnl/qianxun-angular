@@ -3,7 +3,9 @@
     <h4>最新要闻</h4>
     <div class="important-news">
       <ng-container *ngFor="let news of currentNewsList">
-        <h5>{{ news.title }}</h5>
+        <h5>
+          <a [routerLink]="['/news', news.id]">{{ news.title }}</a>
+        </h5>
         <p>{{ news.createdAt }}</p>
       </ng-container>
     </div>
@@ -30,7 +32,6 @@
       <li>No.2</li>
       <li>No.3</li>
     </ol>
-    
   </div>
 </section>
 
