@@ -12,18 +12,10 @@ export const newsList: News[] = Array.from({ length: 20 }, (_, index) => {
   return {
     id: index + 1,
     title: `第${index + 1}条新闻`,
-    content: `mock内容为${createContent(100)}`,
+    content: `mock内容`,
     editor: `editor${index + 1}`,
     createdAt: date.toLocaleDateString(),
   }
 })
 
-function createContent(length: number): string {
-  let content = ''
 
-  for (let i = 0; i < length; i++) {
-    const charCode = Math.floor(Math.random() * (0x9FA5 - 0x4E00)) + 0x4E00
-    content += String.fromCharCode(charCode)
-  }
-  return content
-}

@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { newsList } from './mockData';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-news',
-  imports: [HttpClientModule, CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css'],
 })
@@ -23,7 +22,7 @@ export class NewsComponent {
   }
 
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.indexArray = Array.from({ length: this.totalPages }, (_, i) => i);
   }
 
@@ -37,18 +36,5 @@ export class NewsComponent {
 
   setPage(page: number) {
     this.currentPage = page
-  }
-
-  loadNews() {
-    const apiUrl = 'http://localhost:3000/api/scrape';
-    const articleUrl = 'https://www.epochtimes.com/gb/25/6/3/n14523409.htm';
-
-    this.http.get<{ content: string }>(apiUrl, {
-      params: { url: articleUrl }
-    }).subscribe(res => {
-      this.newsContent = res.content
-    })
-
-    console.log('新闻内容：', this.newsContent)
   }
 }
