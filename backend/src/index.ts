@@ -21,12 +21,7 @@ app.get('/api/scrape', async (req: Request, res: Response): Promise<void> => {
     const response = await axios.get(url, {
       headers: { 'User-Agent': 'Mozilla/5.0' }
     });
-
-    const html = response.data.toString();
-    const match = html.match(/【大纪元[\s\S]*?责任编辑：[^#<]{1,20}#?/);
-    const content = match
-      ? extractContent(match[0])
-      : '未能提取正文';
+    const content = extractContent(response.data.toString());
     res.json({ content });
   } catch (err) {
     res.status(500).json({
