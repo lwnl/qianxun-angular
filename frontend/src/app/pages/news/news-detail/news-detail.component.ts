@@ -26,18 +26,17 @@ export class NewsDetailComponent implements OnInit {
       return;
     }
     this.news = newsList.find(news => news.id === id)
-    this.loadNews()
+    this.loadNews(news)
   }
 
-  loadNews() {
+  loadNews(news: News) {
     const apiUrl = 'http://localhost:3000/api/scrape';
-    const articleUrl = 'https://www.epochtimes.com/gb/25/6/3/n14523409.htm';
 
     this.http.get<{ content: string }>(apiUrl, {
-      params: { url: articleUrl }
+      params: { url: news.url }
     }).subscribe(res => {
       if (this.news) {
-        this.news.content = res.content;
+        this.news.content = res.content
       }
     })
   }

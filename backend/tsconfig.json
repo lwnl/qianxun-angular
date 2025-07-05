@@ -8,5 +8,10 @@
     "strict": true,
     "skipLibCheck": true
   },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "allowImportingTsExtensions": true
+  },
   "include": ["src"]
 }

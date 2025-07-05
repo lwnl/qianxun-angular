@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./news.component.css'],
 })
 export class NewsComponent {
-  newsContent: string = '新闻内容'
   currentPage: number = 1
   pageSize: number = 5
   totalPages: number = Math.ceil(newsList.length / this.pageSize)
