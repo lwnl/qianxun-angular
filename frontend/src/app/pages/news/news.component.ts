@@ -18,7 +18,7 @@ export interface News {
   styleUrls: ['./news.component.css'],
 })
 export class NewsComponent implements OnInit {
-   newsList: News[] = [];
+  newsList: News[] = [];
   currentPage: number = 1
   pageSize: number = 10
   totalPages: number = 0
@@ -34,21 +34,21 @@ export class NewsComponent implements OnInit {
   fetchNewsList() {
     this.loading = true
     this.http.get<{
-      data:News[],
+      data: News[],
       message: string
     }>('http://localhost:3000/api/news-list')
-    .subscribe({
-      next: res => {
-        this.newsList = res.data
-        this.totalPages = Math.ceil(this.newsList.length / this.pageSize);
-        this.indexArray = Array.from({length: this.totalPages}, (_, i) => i + 1)
-        this.loading = false
-      },
-      error: err => {
-        console.error('获取新闻失败', err)
-        this.loading = false
-      }
-    })
+      .subscribe({
+        next: res => {
+          this.newsList = res.data
+          this.totalPages = Math.ceil(this.newsList.length / this.pageSize);
+          this.indexArray = Array.from({ length: this.totalPages }, (_, i) => i + 1)
+          this.loading = false
+        },
+        error: err => {
+          console.error('获取新闻失败', err)
+          this.loading = false
+        }
+      })
   }
 
   get currentNewsList() {
