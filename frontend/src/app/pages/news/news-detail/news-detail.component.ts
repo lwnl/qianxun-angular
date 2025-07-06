@@ -32,12 +32,11 @@ export class NewsDetailComponent implements OnInit {
   loadNews(news: News) {
     const apiUrl = 'http://localhost:3000/api/scrape';
 
-    this.http.get<{ content: string }>(apiUrl, {
-      params: { url: news.url }
-    }).subscribe(res => {
-      if (this.news) {
-        this.news.content = res.content
-      }
-    })
+    this.http.post<{ content: string }>(apiUrl, { url: news.url })
+      .subscribe(res => {
+        if (this.news) {
+          this.news.content = res.content
+        }
+      })
   }
 }
