@@ -4,7 +4,7 @@ import { NewsModel } from "../models/News"
 const newsList = [
   {
     id: 1,
-    title: "因信仰 山东85岁老人遭监视居住后被“收监”",
+    title: "因信仰",
     url: "https://www.epochtimes.com/gb/25/7/1/n14542692.htm",
     content: "",
     createdAt: "2025-07-01"

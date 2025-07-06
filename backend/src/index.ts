@@ -5,6 +5,7 @@ import axios from 'axios';
 import type { Request, Response } from 'express'
 import { extractContent } from './utils/extractContent';
 import { connectDB } from './lib/mongoose';
+import { NewsModel } from './models/News';
 
 const app = express();
 const PORT = 3000;
@@ -18,7 +19,18 @@ connectDB()
 
 // 获取新闻列表
 app.get('/api/news-list', async (req: Request, res: Response): Promise<void> => {
-
+  try {
+    const newsList = await NewsModel.find().sort({ createdAt: -1 })
+    res.status(200).json({
+      data: newsList,
+      message: '新闻列表加载成功'
+    })
+  } catch (error) {
+    console.error('获取新闻列表失败', error)
+    res.status(500).json({
+      error: (error as Error).message || '服务器错误'
+    });
+  }
 })
 
 
@@ -40,7 +52,6 @@ app.post('/api/scrape', async (req: Request, res: Response): Promise<void> => {
   } catch (err) {
     res.status(500).json({
       error: '抓取失败',
-      details: (err as Error).message
     });
   }
 });
