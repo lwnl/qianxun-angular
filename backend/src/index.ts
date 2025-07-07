@@ -7,7 +7,7 @@ import { connectDB } from './lib/mongoose';
 import { NewsModel } from './models/News';
 
 const app = express();
-const PORT = 3000;
+const PORT = 3100;
 
 app.use(cors());
 app.use(cookieParser());

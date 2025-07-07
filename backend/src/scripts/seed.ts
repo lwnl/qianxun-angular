@@ -50,6 +50,6 @@ const init = async () => {
 }
 
 init().catch(err => {
-  console.error('❌ 插入失败:', err);
+  console.error('❌ 数据库初始化失败:', err);
   process.exit(1);
 })

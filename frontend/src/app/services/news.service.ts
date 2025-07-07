@@ -4,7 +4,7 @@ import { News } from "../pages/news/news.component";
 
 @Injectable({ providedIn: 'root' })
 export class NewsService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://localhost:3100';
 
   constructor(private http: HttpClient) { }
 
