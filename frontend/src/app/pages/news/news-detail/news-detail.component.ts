@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { News } from '../news.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NewsService } from '../../../services/news.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-news-detail',
-  imports: [CommonModule, HttpClientModule],
+  imports: [HttpClientModule, CommonModule],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.css'
 })
 export class NewsDetailComponent implements OnInit {
   news?: News;
+  loading: boolean = false
 
   constructor(
     private route: ActivatedRoute,
@@ -21,15 +22,24 @@ export class NewsDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const news = this.newsService.getSelectedNews()
+    const id = Number(this.route.snapshot.paramMap.get('id'))
 
-    if (!news) {
-      console.error('未传入新闻对象');
-      return;
+    if (!id) {
+      console.error("无效新闻id")
     }
 
-    this.news = news
-    this.loadNews(news)
+    this.loading = true
+    this.newsService.getNewsById(id).subscribe({
+      next: (res) => {
+        this.news = res.data
+        this.loading = false
+        this.loadNews(this.news);
+      },
+      error: err => {
+        console.error('获取新闻失败', err)
+        this.loading = false
+      }
+    })
   }
 
   loadNews(news: News) {

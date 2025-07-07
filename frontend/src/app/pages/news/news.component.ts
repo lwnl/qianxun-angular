@@ -35,10 +35,6 @@ export class NewsComponent implements OnInit {
     this.fetchNewsList();
   }
 
-  onNewsClick(news: News) {
-    this.newsService.setSelectedNews(news)
-  }
-
   fetchNewsList() {
     this.loading = true
     this.http.get<{

@@ -1,8 +1,7 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import axios from 'axios';
-import type { Request, Response } from 'express'
 import { extractContent } from './utils/extractContent';
 import { connectDB } from './lib/mongoose';
 import { NewsModel } from './models/News';
@@ -18,7 +17,7 @@ app.use(express.json())
 connectDB()
 
 // 获取新闻列表
-app.get('/api/news-list', async (req: Request, res: Response): Promise<void> => {
+app.get('/api/news-list', async (req: Request, res: Response) => {
   try {
     const newsList = await NewsModel.find().sort({ createdAt: -1 })
     res.status(200).json({
@@ -33,6 +32,26 @@ app.get('/api/news-list', async (req: Request, res: Response): Promise<void> => 
   }
 })
 
+// 获取单条新闻
+app.get('/api/news/:id', async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params
+    const news = await NewsModel.findOne({ id: Number(id) })
+    if (!news) {
+      res.status(404).json({
+        error: '没有该新闻'
+      })
+    }
+    res.status(200).json({
+      data: news
+    })
+  } catch (error) {
+    console.error('获取新闻失败', error)
+    res.status(500).json({
+      error: (error as Error).message || '服务器错误'
+    });
+  }
+})
 
 // 获取单条新闻的具体内容
 app.post('/api/scrape', async (req: Request, res: Response): Promise<void> => {

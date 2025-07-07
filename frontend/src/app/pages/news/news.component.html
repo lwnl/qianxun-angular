@@ -4,7 +4,7 @@
     <div class="important-news">
       <ng-container *ngFor="let news of currentNewsList">
         <h5>
-          <a [routerLink]="['/news', news.id]" (click)="onNewsClick(news)">{{ news.title }}</a>
+          <a [routerLink]="['/news', news.id]">{{ news.title }}</a>
         </h5>
         <p>{{ news.createdAt }}</p>
       </ng-container>
