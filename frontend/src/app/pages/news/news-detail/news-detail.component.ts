@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { News, newsList } from '../mockData';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { News } from '../news.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NewsService } from '../../../services/news.service';
 
 @Component({
   selector: 'app-news-detail',
@@ -15,17 +16,19 @@ export class NewsDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private newsService: NewsService
   ) { }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'))
-    const news = newsList.find(news => news.id === id);
+    const news = this.newsService.getSelectedNews()
+
     if (!news) {
-      console.error(`未找到 id 为 ${id} 的新闻`);
+      console.error('未传入新闻对象');
       return;
     }
-    this.news = newsList.find(news => news.id === id)
+
+    this.news = news
     this.loadNews(news)
   }
 

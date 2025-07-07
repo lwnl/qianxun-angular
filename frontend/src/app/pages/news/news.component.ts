@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NewsService } from '../../services/news.service';
 
 export interface News {
   id: number;
@@ -25,10 +26,17 @@ export class NewsComponent implements OnInit {
   indexArray: number[] = [];
   loading: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private newsService: NewsService
+  ) { }
 
   ngOnInit() {
     this.fetchNewsList();
+  }
+
+  onNewsClick(news: News) {
+    this.newsService.setSelectedNews(news)
   }
 
   fetchNewsList() {
