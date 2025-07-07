@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { News } from '../news.component';
 import { NewsService } from '../../../services/news.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,7 +17,6 @@ export class NewsDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
     private newsService: NewsService
   ) { }
 
@@ -29,27 +28,17 @@ export class NewsDetailComponent implements OnInit {
     }
 
     this.loading = true
-    this.newsService.getNewsById(id).subscribe({
+    this.newsService.getNewsById(id)
+    .subscribe({
       next: (res) => {
         this.news = res.data
         this.loading = false
-        this.loadNews(this.news);
+        this.newsService.loadNews(this.news);
       },
       error: err => {
         console.error('获取新闻失败', err)
         this.loading = false
       }
     })
-  }
-
-  loadNews(news: News) {
-    const apiUrl = 'http://localhost:3000/api/scrape';
-
-    this.http.post<{ content: string }>(apiUrl, { url: news.url })
-      .subscribe(res => {
-        if (this.news) {
-          this.news.content = res.content
-        }
-      })
   }
 }

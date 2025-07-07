@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NewsService } from '../../services/news.service';
@@ -27,7 +27,6 @@ export class NewsComponent implements OnInit {
   loading: boolean = false;
 
   constructor(
-    private http: HttpClient,
     private newsService: NewsService
   ) { }
 
@@ -37,10 +36,7 @@ export class NewsComponent implements OnInit {
 
   fetchNewsList() {
     this.loading = true
-    this.http.get<{
-      data: News[],
-      message: string
-    }>('http://localhost:3000/api/news-list')
+    this.newsService.getNewsList()
       .subscribe({
         next: res => {
           this.newsList = res.data
