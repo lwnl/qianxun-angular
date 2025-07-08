@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh; /* 最小高度100%视口高度 */
+  max-width: 1000px; /* 最大宽度 */
+  min-width: 350px; /* 最小宽度 */
+  margin: 0 auto;
+}
+
+.children {
+  flex-grow: 1;
+}
