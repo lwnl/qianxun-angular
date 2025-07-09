@@ -5,6 +5,7 @@ import axios from 'axios';
 import { extractContent } from './utils/extractContent';
 import { connectDB } from './lib/mongoose';
 import { NewsModel } from './models/News';
+import { userRoute } from './routes/userRoute';
 
 const app = express();
 const PORT = 3100;
@@ -16,6 +17,7 @@ app.use(express.json())
 // 连接数据库
 connectDB()
 
+app.use('/api/user', userRoute)
 // 获取新闻列表
 app.get('/api/news-list', async (req: Request, res: Response) => {
   try {
