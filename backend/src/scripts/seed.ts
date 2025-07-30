@@ -3,35 +3,30 @@ import { NewsModel } from "../models/News"
 
 const newsList = [
   {
-    id: 1,
     title: "因信仰",
     url: "https://www.epochtimes.com/gb/25/7/1/n14542692.htm",
     content: "",
     createdAt: "2025-07-01"
   },
   {
-    id: 2,
     title: "7月飘雪 青海祁连大草原一夜之间白雪皑皑",
     url: "https://www.epochtimes.com/gb/25/7/4/n14544734.htm",
     content: "",
     createdAt: "2025-07-04"
   },
   {
-    id: 3,
     title: "中共将藏族幼童送寄宿学校 令其脱离藏文化",
     url: "https://www.epochtimes.com/gb/25/7/4/n14544722.htm",
     content: "",
     createdAt: "2025-07-04"
   },
   {
-    id: 4,
     title: "宁波、上海等地出现巨大“日晕”",
     url: "https://www.epochtimes.com/gb/25/7/4/n14544699.htm",
     content: "",
     createdAt: "2025-07-04"
   },
   {
-    id: 5,
     title: "荷兰指控俄军广泛使用化武 吁加大制裁",
     url: "https://www.epochtimes.com/gb/25/7/4/n14544672.htm",
     content: "",

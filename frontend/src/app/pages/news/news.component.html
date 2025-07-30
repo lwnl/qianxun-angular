@@ -4,7 +4,7 @@
     <div class="important-news">
       <ng-container *ngFor="let news of currentNewsList">
         <h5>
-          <a [href]="'/news/' + news.id" target="_blank">{{ news.title }}</a>
+          <a [href]="'/news/' + news._id" target="_blank">{{ news.title }}</a>
         </h5>
         <span>{{ news.createdAt }}</span>
       </ng-container>

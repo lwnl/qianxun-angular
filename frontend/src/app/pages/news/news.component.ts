@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NewsService } from '../../services/news.service';
 
 export interface News {
-  id: number;
+  _id: string;
   title: string;
   url: string;
   content: string;
